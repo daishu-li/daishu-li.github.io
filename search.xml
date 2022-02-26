@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Docker安装Mysql 5.7镜像并本地Navicat远程连接——基于阿里云服务器</title>
+      <link href="blog/Docker%E5%AE%89%E8%A3%85Mysql%205.7%E9%95%9C%E5%83%8F%E5%B9%B6%E6%9C%AC%E5%9C%B0Navicat%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <url>blog/Docker%E5%AE%89%E8%A3%85Mysql%205.7%E9%95%9C%E5%83%8F%E5%B9%B6%E6%9C%AC%E5%9C%B0Navicat%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-拉取mysql-5-7"><a href="#1-拉取mysql-5-7" class="headerlink" title="1.拉取mysql 5.7"></a>1.拉取mysql 5.7</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:5.7</span><br></pre></td></tr></table></figure><h2 id="2-运行mysql-5-7容器"><a href="#2-运行mysql-5-7容器" class="headerlink" title="2.运行mysql 5.7容器"></a>2.运行mysql 5.7容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir mysql_docker</span><br><span class="line"><span class="built_in">cd</span> mysql_docker/</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$PWD</span></span><br><span class="line">docker run --name mysqlserver -v <span class="variable">$PWD</span>/conf:/etc/mysql/conf.d -v <span class="variable">$PWD</span>/logs:/logs -v <span class="variable">$PWD</span>/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d -i -p 3306:3306 mysql:5.7</span><br></pre></td></tr></table></figure><h2 id="3-进入到容器中"><a href="#3-进入到容器中" class="headerlink" title="3.进入到容器中"></a>3.进入到容器中</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mysqlserver bash</span><br><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure><h2 id="4-开启远程访问权限"><a href="#4-开启远程访问权限" class="headerlink" title="4.开启远程访问权限"></a>4.开启远程访问权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">use user;</span><br><span class="line"></span><br><span class="line">update user <span class="built_in">set</span> host = <span class="string">&#x27;%&#x27;</span> <span class="built_in">where</span> user = <span class="string">&#x27;root&#x27;</span>; </span><br><span class="line"></span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;你的密码&#x27;</span> WITH GRANT OPTION;</span><br><span class="line"></span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line"></span><br><span class="line">EXIT;</span><br></pre></td></tr></table></figure><h2 id="5-添加阿里云服务器防火墙规则"><a href="#5-添加阿里云服务器防火墙规则" class="headerlink" title="5. 添加阿里云服务器防火墙规则"></a>5. 添加阿里云服务器防火墙规则</h2><blockquote><p><strong>安全——&gt;添加规则——&gt;选择mysql</strong></p><p><img src="https://img-blog.csdnimg.cn/c3342df40b8a437ea3f9a00eeb5c7643.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7df47c1acc884c11a554371e97c48956.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5p2O5Luj5pWw,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>测试页面</title>
       <link href="blog/done/"/>
       <url>blog/done/</url>
